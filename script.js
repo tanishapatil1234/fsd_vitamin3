@@ -2,8 +2,8 @@
  * Question 1
  */
 const question1 = () => {
-  const sidebarButton = __YOUR_CODE_HERE__;
-  const sidebar = __YOUR_CODE_HERE__;
+  const sidebarButton = document.getElementById("sidebar-button");
+  const sidebar = document.getElementById("sidebar");
 
   // Listen for a "click" event on the sidebar's button.
   //
@@ -14,15 +14,16 @@ const question1 = () => {
   // addEventListener will then call the function we provide
   // whenever the button is clicked.
   sidebarButton.addEventListener("click", (event) => {
-    const sidebarIsOpen = __YOUR_CODE_HERE__;
+    const sidebarIsOpen = sidebar.classList.contains("opened");
 
     if (sidebarIsOpen) {
       // Close the sidebar
-      /** YOUR CODE HERE */
-      
+      sidebar.classList.remove("opened");
+      sidebarButton.textContent = "›";
     } else {
       // Open the sidebar
-      /** YOUR CODE HERE */
+      sidebar.classList.add("opened");
+      sidebarButton.textContent = "‹";
     }
   });
 };
@@ -31,30 +32,35 @@ const question1 = () => {
  * Question 2
  */
 const question2 = () => {
-  const taskName = __YOUR_CODE_HERE__;
-  const addTodoButton = __YOUR_CODE_HERE__;
-  const todoListUl = __YOUR_CODE_HERE__;
+  const taskName = document.getElementById("task-name");
+  const addTodoButton = document.getElementById("add-todo");
+  const todoListUl = document.getElementById("todo-list");
 
-  /** YOUR CODE HERE */
-
+  addTodoButton.addEventListener("click", () => {
+    const name = taskName.value.trim();
+    if (name === "") return;
+    const li = document.createElement("li");
+    li.textContent = name;
+    todoListUl.append(li);
+    taskName.value = "";
+  });
 };
 
 /**
  * Question 3
  */
 const question3 = () => {
-  const firstNameInput = __YOUR_CODE_HERE__;
-  const lastNameInput = __YOUR_CODE_HERE__;
-  const message = __YOUR_CODE_HERE__;
+  const firstNameInput = document.getElementById("first-name");
+  const lastNameInput = document.getElementById("last-name");
+  const message = document.getElementById("message");
 
   // using this function is reccomended but not necessary
   const updateMessage = () => {
-    /** YOUR CODE HERE */
-
+    message.textContent = `Hello ${firstNameInput.value} ${lastNameInput.value}!`;
   };
 
-  /** YOUR CODE HERE */
-
+  firstNameInput.addEventListener("input", updateMessage);
+  lastNameInput.addEventListener("input", updateMessage);
 };
 
 /**
